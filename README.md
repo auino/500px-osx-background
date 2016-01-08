@@ -26,14 +26,14 @@ This script allows you to dynamically change your Mac (OS X) background, taking 
     crontab -e
     ```
 
- 5. Now you have to append the following line:
+ 5. Now you have to append the following line (press `i` button to insert data):
 
     ```
     00 12 * * * sh /directory_path/500px-osx-background.sh
     ```
 
     where `/directory_path/` identifies the path of the directory containing the script, while `00 12` specifies the program has to be called every day at noon.
- 6. Hit `CTRL+X` to close, saving the file
+ 6. Hit `:q` to close, saving the file
  7. Enjoy!
 
 ### Notes ###
