@@ -15,7 +15,7 @@
 ONLY_LANDSCAPE_MODE=1
 
 # specify feed source type; available options: user, search, popular, upcoming, fresh, editors
-SRC_TYPE="user"
+SRC_TYPE="search"
 
 # needles
 NEEDLE_TAG="<img"
