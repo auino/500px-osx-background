@@ -14,31 +14,58 @@
 # set to 0 if you want to use (also) portrait photos as background
 ONLY_LANDSCAPE_MODE=1
 
+# specify feed source type; available options: user, search, popular, upcoming, fresh, editors
+SRC_TYPE="search"
+
+# needles
+NEEDLE_TAG="<img"
+NEEDLE_SRC_ATTR="src"
+
 # enable the single feed you prefer
 # feeds information are available at https://support.500px.com/hc/en-us/articles/204910987-What-RSS-feeds-are-available-
 
 # images of a specific user
-USER="auino"
-#FEED="https://500px.com/$USER/rss"
+if [ "SRC_TYPE" = "user" ]; then
+	USER="auino"
+	FEED="https://500px.com/$USER/rss"
+fi
+
+# images from a search
+if [ "SRC_TYPE" = "search" ]; then
+	SEARCH_QUERY="cat"
+	CATEGORIES="Animals"
+	SORT="newest"
+	FEED="https://500px.com/search.rss?q=${SEARCH_QUERY}&type=photos&categories=${CATEGORIES}&sort=${SORT}"
+	NEEDLE_TAG="<media:content"
+	NEEDLE_SRC_ATTR="url"
+fi
 
 # popular feed
-#FEED="https://500px.com/popular.rss"
+if [ "SRC_TYPE" = "popular" ]; then
+	FEED="https://500px.com/popular.rss"
+fi
 
 # upcoming feed
-#FEED="https://500px.com/upcoming.rss"
+if [ "SRC_TYPE" = "upcoming" ]; then
+	FEED="https://500px.com/upcoming.rss"
+fi
 
 # fresh feed
-#FEED="https://500px.com/fresh.rss"
+if [ "SRC_TYPE" = "fresh" ]; then
+	FEED="https://500px.com/fresh.rss"
+fi
 
 # editors' choice feed
-FEED="https://500px.com/editors.rss"
+if [ "SRC_TYPE" = "editors" ]; then
+	FEED="https://500px.com/editors.rss"
+fi
 
 # --- --- --- --- ---
 #  CONFIGURATION END
 # --- --- --- --- ---
 
 # getting feed from 500px
-curl -s "$FEED"|grep "<img"|awk -F'src="' '{print $2}'|awk -F'"' '{print $1}' > /tmp/500px_list.txt
+curl -s "$FEED"|grep "$NEEDLE_TAG"|awk -F$NEEDLE_SRC_TAG=\" '{print $2}'|awk -F'"' '{print $1}' > /tmp/500px_list.txt
 
 # getting elements count
 COUNT=`cat /tmp/500px_list.txt|wc -l|awk '{print $1}'`
