@@ -15,7 +15,7 @@
 ONLY_LANDSCAPE_MODE=1
 
 # specify feed source type; available options: user, search, popular, upcoming, fresh, editors
-SRC_TYPE="search"
+SRC_TYPE="user"
 
 # needles
 NEEDLE_TAG="<img"
@@ -25,13 +25,13 @@ NEEDLE_SRC_ATTR="src"
 # feeds information are available at https://support.500px.com/hc/en-us/articles/204910987-What-RSS-feeds-are-available-
 
 # images of a specific user
-if [ "SRC_TYPE" = "user" ]; then
+if [ "$SRC_TYPE" == "user" ]; then
 	USER="auino"
 	FEED="https://500px.com/$USER/rss"
 fi
 
 # images from a search
-if [ "SRC_TYPE" = "search" ]; then
+if [ "$SRC_TYPE" == "search" ]; then
 	SEARCH_QUERY="cat"
 	CATEGORIES="Animals"
 	SORT="newest"
@@ -41,22 +41,22 @@ if [ "SRC_TYPE" = "search" ]; then
 fi
 
 # popular feed
-if [ "SRC_TYPE" = "popular" ]; then
+if [ "$SRC_TYPE" == "popular" ]; then
 	FEED="https://500px.com/popular.rss"
 fi
 
 # upcoming feed
-if [ "SRC_TYPE" = "upcoming" ]; then
+if [ "$SRC_TYPE" == "upcoming" ]; then
 	FEED="https://500px.com/upcoming.rss"
 fi
 
 # fresh feed
-if [ "SRC_TYPE" = "fresh" ]; then
+if [ "$SRC_TYPE" == "fresh" ]; then
 	FEED="https://500px.com/fresh.rss"
 fi
 
 # editors' choice feed
-if [ "SRC_TYPE" = "editors" ]; then
+if [ "$SRC_TYPE" == "editors" ]; then
 	FEED="https://500px.com/editors.rss"
 fi
 
@@ -65,7 +65,7 @@ fi
 # --- --- --- --- ---
 
 # getting feed from 500px
-curl -s "$FEED"|grep "$NEEDLE_TAG"|awk -F$NEEDLE_SRC_TAG=\" '{print $2}'|awk -F'"' '{print $1}' > /tmp/500px_list.txt
+curl -s "$FEED"|grep "$NEEDLE_TAG"|awk -F$NEEDLE_SRC_ATTR'=\"' '{print $2}'|awk -F'"' '{print $1}' > /tmp/500px_list.txt
 
 # getting elements count
 COUNT=`cat /tmp/500px_list.txt|wc -l|awk '{print $1}'`
