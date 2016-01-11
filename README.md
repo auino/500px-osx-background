@@ -41,6 +41,8 @@ This script allows you to dynamically change your Mac (OS X) background, taking 
 In order to immediately set the new background, the `Dock` program has to be killed.
 If you don't want to kill it, you can comment the relative line on the script.
 
+It's also available (on [Pastebin](http://pastebin.com)) a [Reddit version](http://pastebin.com/G0TNUMXW) of this program.
+
 ### Contacts ###
 
 You can find me on Twitter as [@auino](https://twitter.com/auino).
