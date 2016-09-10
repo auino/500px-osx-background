@@ -32,7 +32,7 @@ This script allows you to dynamically change your Mac (OS X) background, taking 
     00 12 * * * sh /directory_path/500px-osx-background.sh
     ```
 
-    where `/directory_path/` identifies the path of the directory containing the script, while `00 12` specifies the program has to be called every day at noon.
+    where `/directory_path/` identifies the path of the directory containing the script (to be configured as value of the `$DIR` directory on the script), while `00 12` specifies the program has to be called every day at noon.
  6. Hit `:q` to close, saving the file
  7. Enjoy!
 
