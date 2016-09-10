@@ -14,6 +14,9 @@
 # set to 0 if you want to use (also) portrait photos as background
 ONLY_LANDSCAPE_MODE=1
 
+# script directory (without final '/' slash)
+DIR="/tmp"
+
 # specify feed source type; available options: user, search, popular, upcoming, fresh, editors
 SRC_TYPE="user"
 
@@ -65,10 +68,10 @@ fi
 # --- --- --- --- ---
 
 # getting feed from 500px
-curl -s "$FEED"|grep "$NEEDLE_TAG"|awk -F$NEEDLE_SRC_ATTR'=\"' '{print $2}'|awk -F'"' '{print $1}' > /tmp/500px_list.txt
+curl -s "$FEED"|grep "$NEEDLE_TAG"|awk -F$NEEDLE_SRC_ATTR'=\"' '{print $2}'|awk -F'"' '{print $1}' > $DIR/500px_list.txt
 
 # getting elements count
-COUNT=`cat /tmp/500px_list.txt|wc -l|awk '{print $1}'`
+COUNT=`cat $DIR/500px_list.txt|wc -l|awk '{print $1}'`
 
 # cycling until a "good" image if found
 FOUND=0
@@ -80,14 +83,14 @@ for i in $(seq 1 $COUNT); do
 	RND=`expr $RANDOM % $COUNT`
 
 	# getting the image url from index
-	IMG=`cat /tmp/500px_list.txt|tail -n +$RND|head -n 1`
+	IMG=`cat $DIR/500px_list.txt|tail -n +$RND|head -n 1`
 
 	# getting image data from url
-	curl -s "$IMG" -o /tmp/500px_img.png
+	curl -s "$IMG" -o $DIR/500px_img.png
 
 	# getting image dimensions
-	IMG_W=`sips -g pixelWidth /tmp/500px_img.png|tail -n 1|awk '{print $2}'`
-	IMG_H=`sips -g pixelHeight /tmp/500px_img.png|tail -n 1|awk '{print $2}'`
+	IMG_W=`sips -g pixelWidth $DIR/500px_img.png|tail -n 1|awk '{print $2}'`
+	IMG_H=`sips -g pixelHeight $DIR/500px_img.png|tail -n 1|awk '{print $2}'`
 	echo "Image size is ${IMG_W} x ${IMG_H}"
 
 	# checking if image is "good"
@@ -100,7 +103,16 @@ done
 if [ $FOUND ]; then
 	# setting image as background
 	echo "Setting downloaded image as background"
-	osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/tmp/500px_img.png"'
+
+	osascript -e 'tell application "System Events"
+		set desktopCount to count of desktops
+		repeat with desktopNumber from 1 to desktopCount
+			tell desktop desktopNumber
+				set picture to "$DIR/500px_img.png"
+			end tell
+		end repeat
+	end tell'
+
 	killall Dock
 else
 	echo "No image found"

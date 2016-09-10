@@ -43,6 +43,10 @@ If you don't want to kill it, you can comment the relative line on the script.
 
 It's also available (on [Pastebin](http://pastebin.com)) a [Reddit version](http://pastebin.com/G0TNUMXW) of this program.
 
+### External contributions ###
+
+ * Thanks to [theiwaz](https://github.com/theiwaz) for his suggestions on multi monitor support
+
 ### Contacts ###
 
 You can find me on Twitter as [@auino](https://twitter.com/auino).
