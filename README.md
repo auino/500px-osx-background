@@ -46,6 +46,7 @@ It's also available (on [Pastebin](http://pastebin.com)) a [Reddit version](http
 ### External contributions ###
 
  * Thanks to [theiwaz](https://github.com/theiwaz) for his suggestions on multi monitor support
+ * Thanks to [miladkdz](https://github.com/miladkdz) for his suggestions on macOS Sierra support
 
 ### Contacts ###
 
