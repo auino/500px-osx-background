@@ -41,7 +41,7 @@ This script allows you to dynamically change your macOS background, taking image
 In order to immediately set the new background, the `Dock` program has to be killed.
 If you don't want to kill it, you can comment the relative line on the script.
 
-It's also available [Reddit version](https://github.com/auino/reddit-macos-background) of this program, with support to [Gnome](https://www.gnome.org) based Linux systems.
+It's also available a [Reddit version](https://github.com/auino/reddit-macos-background) of this program, with support to [Gnome](https://www.gnome.org) based Linux systems.
 
 ### External contributions ###
 
