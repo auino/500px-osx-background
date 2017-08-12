@@ -47,6 +47,7 @@ It's also available a [Reddit version](https://github.com/auino/reddit-macos-bac
 
  * Thanks to [theiwaz](https://github.com/theiwaz) for his suggestions on multi monitor support
  * Thanks to [miladkdz](https://github.com/miladkdz) for his suggestions on macOS Sierra support
+ * Thanks to [vitovalov](https://github.com/vitovalov) for his better implementation of the background change procedures
 
 ### Contacts ###
 

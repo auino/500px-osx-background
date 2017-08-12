@@ -103,17 +103,7 @@ done
 if [ $FOUND ]; then
 	# setting image as background
 	echo "Setting downloaded image as background"
-
-	osascript -e 'tell application "System Events"
-		set desktopCount to count of desktops
-		repeat with desktopNumber from 1 to desktopCount
-			tell desktop desktopNumber
-				set picture to "'$DIR'/500px_img.png"
-			end tell
-		end repeat
-	end tell'
-
-	killall Dock
+	osascript -e 'tell application "System Events" to set picture of every desktop to ("'$DIR'/500px_img.png" as POSIX file as alias)'
 else
 	echo "No image found"
 fi
