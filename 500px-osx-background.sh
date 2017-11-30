@@ -67,6 +67,9 @@ fi
 #  CONFIGURATION END
 # --- --- --- --- ---
 
+# randomize string
+RANDOMIZER=$(date +%s)
+
 # getting feed from 500px
 curl -s "$FEED"|grep "$NEEDLE_TAG"|awk -F$NEEDLE_SRC_ATTR'=\"' '{print $2}'|awk -F'"' '{print $1}' > $DIR/500px_list.txt
 
@@ -84,9 +87,12 @@ for i in $(seq 1 $COUNT); do
 
 	# getting the image url from index
 	IMG=`cat $DIR/500px_list.txt|tail -n +$RND|head -n 1`
+	
+	# deleting previous imgs
+	rm $DIR/500px_img*
 
 	# getting image data from url
-	curl -s "$IMG" -o $DIR/500px_img.png
+	curl -s "$IMG" -o $DIR/500px_img_$RANDOMIZER.png
 
 	# getting image dimensions
 	IMG_W=`sips -g pixelWidth $DIR/500px_img.png|tail -n 1|awk '{print $2}'`
@@ -103,7 +109,7 @@ done
 if [ $FOUND ]; then
 	# setting image as background
 	echo "Setting downloaded image as background"
-	osascript -e 'tell application "System Events" to set picture of every desktop to ("'$DIR'/500px_img.png" as POSIX file as alias)'
+	osascript -e 'tell application "System Events" to set picture of every desktop to ("'$DIR'/500px_img_'$RANDOMIZER'.png" as POSIX file as alias)'
 else
 	echo "No image found"
 fi
