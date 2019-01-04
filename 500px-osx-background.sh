@@ -95,8 +95,8 @@ for i in $(seq 1 $COUNT); do
 	curl -s "$IMG" -o $DIR/500px_img_$RANDOMIZER.png
 
 	# getting image dimensions
-	IMG_W=`sips -g pixelWidth $DIR/500px_img.png|tail -n 1|awk '{print $2}'`
-	IMG_H=`sips -g pixelHeight $DIR/500px_img.png|tail -n 1|awk '{print $2}'`
+	IMG_W=`sips -g pixelWidth $DIR/500px_img_$RANDOMIZER.png|tail -n 1|awk '{print $2}'`
+	IMG_H=`sips -g pixelHeight $DIR/500px_img_$RANDOMIZER.png|tail -n 1|awk '{print $2}'`
 	echo "Image size is ${IMG_W} x ${IMG_H}"
 
 	# checking if image is "good"
