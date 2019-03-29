@@ -50,6 +50,7 @@ It's also available a [Reddit version](https://github.com/auino/reddit-macos-bac
  * Thanks to [vitovalov](https://github.com/vitovalov) for his better implementation of the background change procedures
  * Thanks to [ctissier](https://github.com/ctissier) for the randomization trick to solve macOS cache issues
  * Thanks to [duongvu89](https://github.com/duongvu89) for the provided bug fixes
+ * Thanks to [stefanskotte](https://github.com/stefanskotte) for the provided bug fix
 
 ### Contacts ###
 
