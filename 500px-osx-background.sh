@@ -109,6 +109,7 @@ done
 if [ $FOUND ]; then
 	# setting image as background
 	echo "Setting downloaded image as background"
+	osascript -e 'tell application "System Events" -- activate' -e 'end tell'
 	osascript -e 'tell application "System Events" to set picture of every desktop to ("'$DIR'/500px_img_'$RANDOMIZER'.png" as POSIX file as alias)'
 else
 	echo "No image found"
